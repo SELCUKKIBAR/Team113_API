@@ -51,7 +51,7 @@ public class C07_Get_BodyTekrarlardanKurtulma {
 
         response.then().assertThat()
                 .statusCode(200)
-                .contentType("application/json; charset=utf-8")
+                .contentType("application/json")
                 .body("firstname", equalTo("Mark"),
                         "lastname",equalTo("Jones"),
                         "totalprice",equalTo(205),
