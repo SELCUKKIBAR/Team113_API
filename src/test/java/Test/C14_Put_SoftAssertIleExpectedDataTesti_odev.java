@@ -1,9 +1,12 @@
 package Test;
 
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.json.JSONObject;
-import org.junit.Test;
+
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import static io.restassured.RestAssured.given;
 
@@ -48,7 +51,7 @@ public class C14_Put_SoftAssertIleExpectedDataTesti_odev {
     public void put01(){
 
         // 1- url ve Request body oluştur
-        String url = "http://dummy.restapiexample.com/api/v1/update/21";
+        String url = "https://dummy.restapiexample.com/api/v1/update/21";
 
 
         JSONObject data = new JSONObject();
@@ -76,20 +79,35 @@ public class C14_Put_SoftAssertIleExpectedDataTesti_odev {
         Response response = given()
                                 .contentType(ContentType.JSON)
                             .when()
-                                .body(reqBody.toString()).post(url);
+                                .body(reqBody.toString()).put(url);
         response.prettyPrint();
 
 
+        // 4- Assertion
+
+        SoftAssert softAssert = new SoftAssert();
+        JsonPath respJP = response.jsonPath();
+
+        softAssert.assertEquals(respJP.get("status"),expectedData.get("status"));
+        softAssert.assertEquals(respJP.get("message"),expectedData.get("message"));
+
+        softAssert.assertEquals(respJP.get("data.data.name")
+                                ,expectedData.getJSONObject("data").getJSONObject("data").get("name"));
+
+        softAssert.assertEquals(respJP.get("data.data.salary")
+                ,expectedData.getJSONObject("data").getJSONObject("data").get("salary"));
+
+        softAssert.assertEquals(respJP.get("data.data.age")
+                ,expectedData.getJSONObject("data").getJSONObject("data").get("age"));
+
+        softAssert.assertEquals(respJP.get("data.data.id")
+                ,expectedData.getJSONObject("data").getJSONObject("data").get("id"));
+
+        softAssert.assertEquals(respJP.get("data.status")
+                ,expectedData.getJSONObject("data").get("status"));
 
 
-
-
-
-
-
-
-
-
+        softAssert.assertAll();
 
 
 

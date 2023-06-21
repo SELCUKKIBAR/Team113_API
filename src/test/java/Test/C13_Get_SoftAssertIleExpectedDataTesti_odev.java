@@ -4,7 +4,8 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.json.JSONObject;
 import org.junit.Assert;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
@@ -55,16 +56,23 @@ public class C13_Get_SoftAssertIleExpectedDataTesti_odev {
 
         // 4- Assertion
 
+        SoftAssert softAssert = new SoftAssert();
         JsonPath respJP=response.jsonPath();
-        assertEquals(responeData.getJSONObject("data").get("id"),respJP.get("data.id"));
-        assertEquals(responeData.getJSONObject("data").get("employee_name"),respJP.get("data.employee_name"));
-        assertEquals(responeData.getJSONObject("data").get("employee_salary"),respJP.get("data.employee_salary"));
-        assertEquals(responeData.getJSONObject("data").get("employee_age"),respJP.get("data.employee_age"));
-        assertEquals(responeData.getJSONObject("data").get("profile_image"),respJP.get("data.profile_image"));
-        assertEquals(responeData.get("status"),respJP.get("status"));
-        assertEquals(responeData.get("message"),respJP.get("message"));
 
 
+        softAssert.assertEquals(respJP.get("status"),responeData.get("status"));
+        softAssert.assertEquals(respJP.get("message"),responeData.get("message"));
+        softAssert.assertEquals(respJP.get("data.id"),responeData.getJSONObject("data").get("id"));
+        softAssert.assertEquals(respJP.get("data.employee_name"),responeData.getJSONObject("data").get("employee_name"));
+        softAssert.assertEquals(respJP.get("data.employee_salary"),responeData.getJSONObject("data").get("employee_salary"));
+        softAssert.assertEquals(respJP.get("data.employee_age"),responeData.getJSONObject("data").get("employee_age"));
+        softAssert.assertEquals(respJP.get("data.profile_image"),responeData.getJSONObject("data").get("profile_image"));
+
+
+
+
+
+        softAssert.assertAll();
 
 
     }
