@@ -4,6 +4,8 @@ import org.json.JSONObject;
 
 public class TestDataHerouApp {
 
+    public int basariliStatusKodu = 200;
+
 
 
     public JSONObject bookingDatesOlusturJson(){
