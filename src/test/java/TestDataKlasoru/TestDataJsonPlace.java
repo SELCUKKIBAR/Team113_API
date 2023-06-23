@@ -52,8 +52,8 @@ public class TestDataJsonPlace {
 
         reqBody.put("title","Ali");
         reqBody.put("body","Merhaba");
-        reqBody.put("userId",10);
-        reqBody.put("id",70);
+        reqBody.put("userId",10.0);
+        reqBody.put("id",70.0);
 
         return reqBody;
     }
