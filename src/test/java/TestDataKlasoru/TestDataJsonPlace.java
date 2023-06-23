@@ -2,6 +2,8 @@ package TestDataKlasoru;
 
 import org.json.JSONObject;
 
+import java.util.HashMap;
+
 public class TestDataJsonPlace {
 
     public String contentType = "application/json; charset=utf-8";
@@ -34,6 +36,29 @@ public class TestDataJsonPlace {
 
         return reqBody;
     }
+
+    public HashMap requestBodyOlusturMap(){
+
+        HashMap<String , Object> reqBody = new HashMap<>();
+
+        /*
+        {
+        "title":"Ahmet",
+        "body":"Merhaba",
+        "userId":10,
+        "id":70
+        }
+         */
+
+        reqBody.put("title","Ali");
+        reqBody.put("body","Merhaba");
+        reqBody.put("userId",10);
+        reqBody.put("id",70);
+
+        return reqBody;
+    }
+
+
 
 
 }

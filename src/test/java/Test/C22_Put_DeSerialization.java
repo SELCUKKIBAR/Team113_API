@@ -1,8 +1,12 @@
 package Test;
 
+import TestDataKlasoru.TestDataJsonPlace;
+import baseUrlKlasoru.JsonPlaceHolderBaseURL;
 import org.junit.Test;
 
-public class C22_Put_DeSerialization {
+import java.util.HashMap;
+
+public class C22_Put_DeSerialization extends JsonPlaceHolderBaseURL {
 
     /*
     https://jsonplaceholder.typicode.com/posts/70 url'ine asagidaki
@@ -26,6 +30,14 @@ public class C22_Put_DeSerialization {
 
     @Test
     public void put01(){
+
+        // 1- url ve request body hazirla
+
+        specJsonPlace.pathParams("pp1","posts","pp2",70);
+
+        TestDataJsonPlace testDataJsonPlace = new TestDataJsonPlace();
+
+        HashMap <String, Object> reqBody = testDataJsonPlace.requestBodyOlusturMap();
 
 
 

@@ -78,6 +78,8 @@ public class C21_Post_TestDataKullanimi extends HerokuAppBaseURL {
         // 4- Assertion...
 
         JsonPath responeJP = response.jsonPath();
+
+
         assertEquals(expData.getJSONObject("booking").get("firstname")
                 ,responeJP.get("booking.firstname"));
 
